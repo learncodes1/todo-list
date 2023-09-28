@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useNavigate } from 'react-router-dom'; // Import useHistory
+import { useParams, useNavigate } from 'react-router-dom';
 import { deleteTask, updateTask } from '../reducers/taskSlice';
+import { Button, Input, Select, SelectItem, Textarea } from "@nextui-org/react";
 
 const EditTaskForm = () => {
     const { taskId } = useParams();
     const dispatch = useDispatch();
-    const history = useNavigate(); // Initialize useHistory
+    const history = useNavigate();
     const task = useSelector((state) =>
         state.tasks.find((task) => task.id === taskId)
     );
@@ -22,59 +23,79 @@ const EditTaskForm = () => {
 
     const handleSubmit = () => {
         dispatch(updateTask(taskData));
-        history(`/task/${taskId}`); // Redirect to task details after updating
+        history(`/task/${taskId}`);
     };
 
     const handleDelete = () => {
-        dispatch(deleteTask(task.id)); // Delete the task by dispatching deleteTask with task.id
-        history('/'); // Redirect to the task list after deletion
+        dispatch(deleteTask(task.id));
+        history('/');
     };
 
     return (
         <div>
-            <h2>Edit Task</h2>
-            {task ? (
-                <form onSubmit={handleSubmit}>
-                    <label>Title:</label>
-                    <input
-                        type="text"
-                        name="title"
-                        value={taskData.title}
-                        onChange={handleChange}
-                        required
-                    />
-                    <label>Description:</label>
-                    <textarea
-                        name="description"
-                        value={taskData.description}
-                        onChange={handleChange}
-                    />
-                    <label>Due Date:</label>
-                    <input
-                        type="date"
-                        name="dueDate"
-                        value={taskData.dueDate}
-                        onChange={handleChange}
-                    />
-                    <label>Status:</label>
-                    <select
-                        name="status"
-                        value={taskData.status}
-                        onChange={handleChange}
-                    >
-                        <option value="To Do">To Do</option>
-                        <option value="In Progress">In Progress</option>
-                        <option value="Done">Done</option>
-                    </select>
-                    <button type="submit">Update Task</button>
-                </form>
-            ) : (
-                <p>Task not found.</p>
-            )}
+            <h2 className="text-center">Edit Task</h2>
+            <div className="flex justify-center w-full">
+                {task ? (
+                    <form className="w-full max-w-2xl md:max-w-lg xs:max-w-sm">
+                        <Input
+                            onChange={handleChange}
+                            name="title"
+                            type="text"
+                            label="Title"
+                            labelPlacement="inside"
+                            value={taskData.title}
+                            className="my-3"
+                            required
+                        />
+
+
+                        <Textarea
+                            onChange={handleChange}
+                            value={taskData.description}
+                            name="description"
+                            label="Description"
+                            labelPlacement="inside"
+                            placeholder="Enter description"
+                            className="my-3"
+                        />
+
+                        <Input
+                            type="date"
+                            name="dueDate"
+                            label="Date"
+                            labelPlacement="inside"
+                            value={taskData.dueDate}
+                            className="my-3"
+                            onChange={handleChange}
+                        />
+
+                        <Select
+                            name="status" value={taskData.status} onChange={handleChange}
+                            label="Status"
+                            placeholder="select status"
+                            className="my-3"
+                        >
+                            <SelectItem key={"To Do"} value="To Do">To Do</SelectItem>
+                            <SelectItem key={"In Progress"} value="In Progress">In Progress</SelectItem>
+                            <SelectItem key={"Done"} value="Done">Done</SelectItem>
+                        </Select>
+
+
+                    </form>
+
+                ) : (
+                    <p>Task not found.</p>
+                )}
+            </div>
             {task && (
-                <button onClick={handleDelete} type="button">
-                    Delete Task
-                </button>
+                <div className="flex gap-4 items-center justify-center my-3">
+                    <Button type="submit" color="warning" onClick={handleSubmit} >
+                        Update Task
+                    </Button>
+                    <Button onClick={handleDelete} type="button" color="danger"> Delete Task </Button>
+                </div>
+
+
             )}
         </div>
     );

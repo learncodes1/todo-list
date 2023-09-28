@@ -1,3 +1,130 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --color-brand: #22c55e;
+}
+
+body {
+    background-color: #f4f8fc;
+    font-size: 15px;
+    line-height: 25px;
+    color: #828282;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    font-weight: 500;
+}
+
+h1,
+.heading-1 {
+    font-size: 112px;
+    line-height: 1;
+}
+
+@screen xl {
+    font-size: 80px;
+}
+
+@screen lg {
+    font-size: 70px;
+}
+
+@screen sm {
+    font-size: 60px;
+}
+
+h2,
+.heading-2 {
+    font-size: 56px;
+    line-height: 65px;
+}
+
+@screen md {
+    font-size: 45px;
+    line-height: 55px;
+}
+
+@screen sm {
+    font-size: 30px;
+    line-height: 40px;
+}
+
+h3,
+.heading-3 {
+    font-size: 45px;
+    line-height: 55px;
+}
+
+@screen lg {
+    font-size: 30px;
+    line-height: 40px;
+}
+
+@screen md {
+    font-size: 25px;
+    line-height: 35px;
+}
+
+@screen sm {
+    font-size: 22px;
+    line-height: 30px;
+}
+
+h4,
+.heading-4 {
+    font-size: 35px;
+    line-height: 45px;
+}
+
+@screen xl {
+    font-size: 30px;
+    line-height: 40px;
+}
+
+@screen lg {
+    font-size: 25px;
+    line-height: 35px;
+}
+
+@screen sm {
+    font-size: 22px;
+    line-height: 30px;
+}
+
+h5,
+.heading-5 {
+    font-size: 25px;
+    line-height: 30px;
+}
+
+@screen lg {
+    font-size: 20px;
+    line-height: 25px;
+}
+
+@screen sm {
+    font-size: 18px;
+}
+
+@screen xs {
+    font-size: 16px;
+}
+
+h6,
+.heading-6 {
+    font-size: 19px;
+    line-height: 35px;
+}
+
+@screen xl {
+    font-size: 16px;
+    line-height: 30px;
+}

@@ -7,7 +7,7 @@ const loadTasksFromLocalStorage = () => {
         const storedTasks = localStorage.getItem(TASKS_STORAGE_KEY);
         return storedTasks ? JSON.parse(storedTasks) : [];
     } catch (error) {
-        console.error('Error loading tasks from local storage:', error);
+        console.error('Error loading tasks from the local storage:', error);
         return [];
     }
 };
@@ -16,7 +16,7 @@ const saveTasksToLocalStorage = (tasks) => {
     try {
         localStorage.setItem(TASKS_STORAGE_KEY, JSON.stringify(tasks));
     } catch (error) {
-        console.error('Error saving tasks to local storage:', error);
+        console.error('Error saving tasks to the local storage:', error);
     }
 };
 
